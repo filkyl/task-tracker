@@ -20,6 +20,10 @@ public class Task {
         finished = false;
     }
 
+    public static void setNextId(int id) {
+        Task.nextId = id;
+    }
+
     public int getId() {return id;}
 
     public String getCourse() {return course;}

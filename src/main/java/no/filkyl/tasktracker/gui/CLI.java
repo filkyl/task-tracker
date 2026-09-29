@@ -76,12 +76,12 @@ public class CLI {
         Task task = library.getTask(id);
 
         if (task == null) {
-            System.out.println("Task with ID <" + id + "> not found.");
+            System.out.println("Task with ID <" + id + "> was not found.");
             return;
         }
 
         library.editTask(task, course, title, due);
-        System.out.println("Task with ID <" + id + "> updated.");
+        System.out.println("Task with ID <" + id + "> was updated.");
     }
 
     public void finish(String[] args) {
@@ -92,7 +92,7 @@ public class CLI {
         int id = Integer.parseInt(args[1]);
         Task task = library.getTask(id);
         task.setFinished();
-        System.out.println("Task with ID <" + id + "> updated.");
+        System.out.println("Task with ID <" + id + "> was updated.");
     }
 
     public void remove(String[] args) {
@@ -104,6 +104,7 @@ public class CLI {
         int id = Integer.parseInt(args[1]);
         Task task = library.getTask(id);
         library.removeTask(task);
+        System.out.println("Task with ID <" + id + "> was removed.");
     }
 
     public void command(String[] args) {
