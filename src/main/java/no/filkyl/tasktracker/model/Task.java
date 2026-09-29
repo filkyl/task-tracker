@@ -1,30 +1,38 @@
 package no.filkyl.model;
 
 public class Task {
-    
+
+    private static int nextId = 1;
+
+    private int id;
     private String course;
-    private String name;
+    private String title;
     private String due;
     private boolean finished;
 
-    public Task(String c, String n, String d) {
+    public Task() {}
+
+    public Task(String c, String t, String d) {
+        id = nextId++;
         course = c;
-        name = n;
+        title = t;
         due = d;
         finished = false;
     }
 
+    public int getId() {return id;}
+
     public String getCourse() {return course;}
 
-    public String getName() {return name;}
+    public String getTitle() {return title;}
 
     public String getDue() {return due;}
 
-    public boolean getStatus() {return finished;}
+    public boolean getFinished() {return finished;}
 
     public void setCourse(String c) {course = c;}
 
-    public void setName(String n) {name = n;}
+    public void setTitle(String t) {title = t;}
 
     public void setDue(String d) {due = d;}
 
@@ -32,9 +40,13 @@ public class Task {
 
     @Override
     public String toString() {
-        String s;
-        s = "Course: " + course + "\nName: " + name + "\nDue: " + due + "\nFinished: " + finished;
-        return s;
+        return """
+                ID: %d
+                    Course: %s
+                    Title: %s
+                    Due: %s
+                    Finished: %b
+                """.formatted(id, course, title, due, finished);
     }
 
 }

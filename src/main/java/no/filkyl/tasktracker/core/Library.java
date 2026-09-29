@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    
+
     private List<Task> tasks;
     private Storage storage;
 
@@ -17,37 +17,40 @@ public class Library {
     }
 
     public List<Task> getAllTasks() {
-        return tasks;
+        return new ArrayList<>(tasks);
     }
 
     public Task getTask(int i) {
-        return tasks.get(i);
+        for (Task task : tasks) {
+            if (task.getId() == i) {
+                return task;
+            }
+        }
+        return null;
     }
 
-    public void addTask(Task t) {
-        tasks.add(t);
+    public void addTask(String c, String t, String d) {
+        Task task = new Task(c, t, d);
+        tasks.add(task);
     }
     
     public void removeTask(Task t) {
         tasks.remove(t);
     }
 
-    public void editTask(int i, String c, String n, String d, boolean b) {
-        Task task = tasks.get(i);
+    public void editTask(Task tsk, String c, String t, String d) {
+        Task task = tsk;
         task.setCourse(c);
-        task.setName(n);
+        task.setTitle(t);
         task.setDue(d);
-        if (b) {
-            task.setFinished();
-        }; 
     }
 
-    public void saveTasks() {
-        storage.save(tasks);
+    public void save() {
+        storage.saveTasks(tasks);
     }
 
-    public void loadTasks() {
-        tasks = storage.load();
+    public void load() {
+        tasks = storage.loadTasks();
     }
 
 

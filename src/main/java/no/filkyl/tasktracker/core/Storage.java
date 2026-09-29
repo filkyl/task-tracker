@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Storage {
     private ObjectMapper mapper = new ObjectMapper();
 
-    public void save(List<Task> tasks) {
+    public void saveTasks(List<Task> tasks) {
         try {
             mapper.writeValue(new File("data/library.json"), tasks);
         } catch (IOException e) {
@@ -21,7 +21,7 @@ public class Storage {
         }
     }
 
-    public List<Task> load() {
+    public List<Task> loadTasks() {
         try {
             List<Task> tasks = mapper.readValue(
                 new File("data/library.json"),
@@ -31,6 +31,7 @@ public class Storage {
 
         } catch (IOException e) {
             System.out.println("Could not load tasks.");
+            e.printStackTrace();
             return new ArrayList<>();
         }
     }

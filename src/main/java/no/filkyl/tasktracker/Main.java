@@ -1,24 +1,16 @@
 package no.filkyl.tasktracker;
 
-import no.filkyl.model.Task;
-
+import no.filkyl.core.Library;
+import no.filkyl.gui.CLI;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("--- Task Tracker ---");
+        Library library = new Library();
+        library.load();
 
-        String course = "IN2130";
-        String name = "Oblig 2";
-        String due = "02/10/26";
+        CLI cli = new CLI(library);
+        cli.run();
 
-        Task task = new Task(course, name, due);
-
-        System.out.println("\n--- Unfinished ---");
-        System.out.println(task);
-
-        task.setFinished();
-
-        System.out.println("\n--- Finished ---");
-        System.out.println(task);
+        library.save();   
     }
 }
